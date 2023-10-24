@@ -1,0 +1,8 @@
+# Ignore the node_modules directory
+node_modules/
+
+# Ignore build files or directories (adjust to match your specific build tools)
+build/
+dist/
+out/
+public/
