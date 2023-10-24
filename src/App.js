@@ -325,50 +325,106 @@ function App() {
                   <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันจันทร์
                   </div>
-                  <TimePicker className="w-full" size="large" />
-                  <TimePicker className="w-full" size="large" />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
                 </div>
                 <div className="flex ">
                   <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันอังคาร
                   </div>
-                  <TimePicker className="w-full" size="large" />
-                  <TimePicker className="w-full" size="large" />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
                 </div>
                 <div className="flex ">
                   <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันพุธ
                   </div>
-                  <TimePicker className="w-full" size="large" />
-                  <TimePicker className="w-full" size="large" />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
                 </div>
                 <div className="flex ">
                   <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     พฤหัสบดี
                   </div>
-                  <TimePicker className="w-full" size="large" />
-                  <TimePicker className="w-full" size="large" />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
                 </div>
                 <div className="flex ">
                   <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันศุกร์
                   </div>
-                  <TimePicker className="w-full" size="large" />
-                  <TimePicker className="w-full" size="large" />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
                 </div>
                 <div className="flex ">
                   <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันเสาร์
                   </div>
-                  <TimePicker className="w-full" size="large" />
-                  <TimePicker className="w-full" size="large" />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
                 </div>
                 <div className="flex ">
                   <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันอาทิตย์
                   </div>
-                  <TimePicker className="w-full" size="large" />
-                  <TimePicker className="w-full" size="large" />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
+                  <TimePicker
+                    className="w-full"
+                    size="large"
+                    format={"HH:mm"}
+                  />
                 </div>
               </div>
               <div className="flex flex-row gap-2 ">
