@@ -70,9 +70,9 @@ function App() {
   ];
 
   return (
-    <div className="flex items-center justify-center pt-16 flex-col ">
-      <Steps
-        className="px-64"
+    <div className="flex items-center justify-center  mb:pt-16 flex-col ">
+      {/* <Steps
+        className="px-64 hidden lg:flex"
         items={[
           {
             title: "ข้อมูลทั่วไป",
@@ -100,13 +100,11 @@ function App() {
             icon: <SmileOutlined />,
           },
         ]}
-      />
-      <Card className="my-16 ">
-        <div className="mx-20 flex items-center flex-col">
+      /> */}
+      <Card className="m-4">
+        <div className="flex items-center flex-col">
           <svg
             className="w-56 mb-5 "
-            width="327"
-            height="130"
             viewBox="0 0 327 130"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
@@ -649,11 +647,11 @@ function App() {
               </div>
               <div className="text-xs">Authentication System</div>
               <Divider />
-              <Row gutter={[8, 8]} className="mt-8 h-64">
-                <Col span={12}>
+              <Row gutter={[8, 8]} className="mt-8 ">
+                <Col span={12} className="w-auto flex items-center ">
                   <img
-                    src="https://www.chem-ou.com/manage/uploads/2021/verify05.jpg"
-                    className="h-64"></img>
+                    className="w-32 md:w-64"
+                    src="https://www.chem-ou.com/manage/uploads/2021/verify05.jpg"></img>
                 </Col>
                 <Col span={12}>
                   <Form.Item label="ขั้นตอนที่ 1 กรุณาถ่ายรูปคู่บัตรประชาชน">
@@ -675,11 +673,11 @@ function App() {
                   </Form.Item>
                 </Col>
               </Row>
-              <Row gutter={[8, 8]} className="mt-8 h-64">
-                <Col span={12}>
+              <Row gutter={[8, 8]} className="mt-8 ">
+                <Col span={12} className="w-auto flex items-center  ">
                   <img
-                    src="https://hilight.kapook.com/img_cms2/user/patcharin/2022/hilight/card1.jpg"
-                    className="w-64 py-8 "></img>
+                    className="w-32 md:w-64"
+                    src="https://hilight.kapook.com/img_cms2/user/patcharin/2022/hilight/card1.jpg"></img>
                 </Col>
                 <Col span={12}>
                   <Form.Item label="ขั้นตอนที่ 2 กรุณาถ่ายรูปหน้าบัตรประชาชน">
