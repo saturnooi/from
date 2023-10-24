@@ -462,9 +462,9 @@ function App() {
               <div className="text-xs">Authentication System</div>
               <Divider />
               <div className="flex flex-row gap-2 ">
-                <div className="w-full align-middle">
+                <div className="w-full flex items-center">
                   <img
-                    className="w-full align-middle "
+                    className="w-full "
                     src="https://hilight.kapook.com/img_cms2/user/patcharin/2022/hilight/card1.jpg"
                   />
                 </div>
@@ -488,7 +488,7 @@ function App() {
               </div>
 
               <div className="flex flex-row gap-2 ">
-                <div className="w-full   ">
+                <div className="w-full flex items-center ">
                   <img
                     className="w-full align-middle "
                     src="https://hilight.kapook.com/img_cms2/user/patcharin/2022/hilight/card1.jpg"
