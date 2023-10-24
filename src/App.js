@@ -8,18 +8,15 @@ import {
   PieChartOutlined,
   InboxOutlined,
 } from "@ant-design/icons";
-
 import {
   Steps,
-  Card,
   Divider,
   Input,
   Form,
-  Col,
-  Row,
   Select,
   Button,
   Upload,
+  TimePicker,
 } from "antd";
 
 function App() {
@@ -47,26 +44,42 @@ function App() {
     return e?.fileList;
   };
 
-  const options = [
-    { value: "06.00", label: "06.00" },
-    { value: "07.00", label: "07.00" },
-    { value: "08.00", label: "08.00" },
-    { value: "09.00", label: "09.00" },
-    { value: "10.00", label: "10.00" },
-    { value: "11.00", label: "11.00" },
-    { value: "12.00", label: "12.00" },
-    { value: "13.00", label: "13.00" },
-    { value: "14.00", label: "14.00" },
-    { value: "15.00", label: "15.00" },
-    { value: "16.00", label: "16.00" },
-    { value: "17.00", label: "17.00" },
-    { value: "18.00", label: "18.00" },
-    { value: "19.00", label: "19.00" },
-    { value: "20.00", label: "20.00" },
-    { value: "21.00", label: "21.00" },
-    { value: "22.00", label: "22.00" },
-    { value: "23.00", label: "23.00" },
-    { value: "00.00", label: "00.00" },
+  const jobOptions = [
+    "นักกิจกรรมบำบัด",
+    "นักสังคมสงเคราะห์",
+    "นักรังสีการแพทย์",
+    "นักจิตวิทยา",
+    "เภสัชกร",
+    "ทันตแพทย์",
+    "แพทย์",
+    "นักกายบำบัด",
+    "นักวิชาการสาธารณสุข",
+    "นักเทคนิคการแพทย์",
+    "อาจารย์มหาวิทยาลัย",
+    "นักการแพทย์แผนไทย",
+    "พยาบาลวิชาชีพ",
+    "นักโภชนาการ/นักกำหนดอาหาร",
+    "ผู้เชี่ยวชาญ",
+  ];
+
+  const workPlace = [
+    "โรงพยาบาลมหาวิทยาลัย",
+    "โรงพยาบาลส่วนกลาง",
+    "โรงพยาบาลศูนย์",
+    "โรงพยาบาลทั่วไป",
+    "โรงพยาบาลชุมชน",
+    "โรงพยาบาลส่งเสริมสุขภาพตำบล",
+    "โรงพยาบาลเอกชน",
+    "มหาวิทยาลัย",
+    "ร้านยาเดี่ยว",
+    "ร้านยาเครือข่าย",
+    "คลินิกการพยาบาลและการผดุงครรภ์",
+    "คลินิกกายภาพบำบัด",
+    "คลินิกเทคนิคการแพทย์",
+    "คลินิกแพทย์แผนไทยประยุกต์",
+    "คลินิกสัตวแพทย์",
+    "สภาเภสัชกรรม",
+    "บริษัทยา",
   ];
 
   return (
@@ -101,7 +114,7 @@ function App() {
           },
         ]}
       /> */}
-      <Card className="m-4">
+      <div className=" md:w-[600px] border-2 rounded-xl shadow-md mt-20 p-4  ">
         <div className="flex items-center flex-col">
           <svg
             className="w-56 mb-5 "
@@ -135,6 +148,7 @@ function App() {
             สำหรับบุคลากรทางการแพทย์เท่านั้น
           </div>
         </div>
+
         <div className="mt-20">
           <Form form={form} layout="vertical" onFinish={onFinish}>
             <div class={page !== 1 ? "hidden" : "null"}>
@@ -142,504 +156,304 @@ function App() {
                 ข้อมูลทั่วไป
               </div>
               <Divider />
-              <Row gutter={[8, 8]}>
-                <Col span={12}>
-                  <Form.Item
-                    label="Email"
-                    name="email"
-                    className=" w-full"
-                    // rules={[
-                    //   {
-                    //     required: true,
-                    //     message: "Please input your username!",
-                    //     type: "email",
-                    //   },
-                    // ]}
-                  >
-                    <Input placeholder="input email" />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label="เลขบัตรประชาชน" className=" w-full">
-                    <Input placeholder="input ID" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]}>
-                <Col span={12}>
-                  <Form.Item label="คำนำหน้า" className=" w-full">
-                    <Select
-                      options={[
-                        { value: "MR", label: "นาย" },
-                        { value: "MS", label: "นาง" },
-                        { value: "MRS", label: "นางสาว" },
-                      ]}
-                    />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]}>
-                <Col span={12}>
-                  <Form.Item label="ชื่อ" className=" w-full">
-                    <Input placeholder="input email" />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label="นามสกุล" className=" w-full">
-                    <Input placeholder="input ID" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]}>
-                <Col span={12}>
-                  <Form.Item label="อาชีพ" className=" w-full">
-                    <Input placeholder="input email" />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label="หมายเลขโทรศัพท์" className=" w-full">
-                    <Input placeholder="input ID" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]}>
-                <Col span={12}>
-                  <Form.Item
-                    label="เลขที่ใบอนุญาตประกอบวิชาชีพ"
-                    className=" w-full">
-                    <Input placeholder="input email" />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label="สถานะใบอนุญาต" className=" w-full">
-                    <Input placeholder="input ID" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]}>
-                <Col span={12}>
-                  <Form.Item label="ID Line ของท่าน" className=" w-full">
-                    <Input placeholder="input email" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]}>
-                <Col span={24}>
-                  <Form.Item
-                    label="ที่อยู่ที่สามารถติดต่อได้"
-                    className=" w-full">
-                    <Input.TextArea rows={6} />
-                  </Form.Item>
-                </Col>
-              </Row>
+              <div className="flex flex-row gap-2">
+                <Form.Item label="Email" name="email" className=" w-full">
+                  <Input placeholder="กรุณากรอกอีเมล" />
+                </Form.Item>
+                <Form.Item label="เลขบัตรประชาชน" className="w-full">
+                  <Input placeholder="กรุณากรอกเลขบัตรประชาชน" />
+                </Form.Item>
+              </div>
+              <div className="flex flex-row gap-2 flex-start">
+                <Form.Item label="คำนำหน้า" className="w-[50%]">
+                  <Select
+                    placeholder="กรุณาเลือกคำนำหน้า"
+                    options={[
+                      { value: "MR", label: "นาย" },
+                      { value: "MS", label: "นาง" },
+                      { value: "MRS", label: "นางสาว" },
+                    ]}
+                  />
+                </Form.Item>
+              </div>
+
+              <div className="flex flex-row gap-2 flex-start">
+                <Form.Item label="ชื่อ" className=" w-full">
+                  <Input placeholder="กรุณากรอกชื่อ" />
+                </Form.Item>
+                <Form.Item label="นามสกุล" className=" w-full">
+                  <Input placeholder="กรุณากรอกนามสกุล" />
+                </Form.Item>
+              </div>
+              <div className="flex flex-row gap-2 flex-start">
+                <Form.Item label="อาชีพ" className=" w-full">
+                  <Select
+                    placeholder="กรุณาเลือกอาชีพ"
+                    options={jobOptions.map((option) => ({
+                      value: option,
+                      label: option,
+                    }))}
+                  />
+                </Form.Item>
+                <Form.Item label="หมายเลขโทรศัพท์" className=" w-full">
+                  <Input placeholder="กรุณากรอกหมายเลขโทรศัพท์" />
+                </Form.Item>
+              </div>
+              <div className="flex flex-row gap-2 flex-start">
+                <Form.Item
+                  label="เลขที่ใบอนุญาตประกอบวิชาชีพ"
+                  className=" w-full">
+                  <Input placeholder="กรุณากรอกเลขที่ใบอนุญาต" />
+                </Form.Item>
+              </div>
+              <div className="flex flex-row gap-2 ">
+                <Form.Item label="สถานะใบอนุญาต" className=" w-full">
+                  <Select
+                    placeholder="กรุณาเลือกสถานะใบอนุญาต"
+                    options={[
+                      {
+                        value: "ปกติ",
+                        label: "ปกติ",
+                      },
+                      {
+                        value: "ไม่ปกติ",
+                        label: "ไม่ปกติ",
+                      },
+                    ]}
+                  />
+                </Form.Item>
+                <Form.Item label="ID Line ของท่าน" className=" w-full">
+                  <Input placeholder="กรุณากรอก ID Line" />
+                </Form.Item>
+              </div>
+
+              <div className="flex flex-row gap-2 flex-start">
+                <Form.Item
+                  label="ที่อยู่ที่สามารถติดต่อได้"
+                  className=" w-full">
+                  <Input.TextArea
+                    placeholder="ที่อยู่ที่สามารถติดต่อได้"
+                    rows={6}
+                  />
+                </Form.Item>
+              </div>
             </div>
+
             <div class={page !== 2 ? "hidden" : "null"}>
               <div className=" text-left text-[#0e286b] font-bold">
                 ข้อมูลสถานที่ทำงานหลัก
               </div>
               <Divider />
-              <Row gutter={[8, 8]}>
-                <Col span={12}>
-                  <Form.Item label="ประเภทสถานที่ทำงาน" className=" w-full">
-                    <Select
-                      options={[
-                        {
-                          value: "โรงพยาบาลมหาวิทยาลัย",
-                          label: "โรงพยาบาลมหาวิทยาลัย",
-                        },
-                        {
-                          value: "โรงพยาบาลส่วนกลาง",
-                          label: "โรงพยาบาลส่วนกลาง",
-                        },
-                        { value: "โรงพยาบาลศูนย์", label: "โรงพยาบาลศูนย์" },
-                        { value: "โรงพยาบาลทั่วไป", label: "โรงพยาบาลทั่วไป" },
-                        { value: "โรงพยาบาลชุมชน", label: "โรงพยาบาลชุมชน" },
-                        {
-                          value: "โรงพยาบาลส่งเสริมสุขภาพตำบล",
-                          label: "โรงพยาบาลส่งเสริมสุขภาพตำบล",
-                        },
-                        {
-                          value: "โรงพยาบาลเอกชน",
-                          label: "โรงพยาบาลเอกชน",
-                        },
-                        {
-                          value: "มหาวิทยาลัย",
-                          label: "มหาวิทยาลัย",
-                        },
-                        {
-                          value: "ร้านยาเดี่ยว",
-                          label: "ร้านยาเดี่ยว",
-                        },
-                        {
-                          value: "ร้านยาเครือข่าย",
-                          label: "ร้านยาเครือข่าย",
-                        },
-                        {
-                          value: "คลินิกการพยาบาลและการผดุงครรภ์",
-                          label: "คลินิกการพยาบาลและการผดุงครรภ์",
-                        },
-                        {
-                          value: "คลินิกกายภาพบำบัด",
-                          label: "คลินิกกายภาพบำบัด",
-                        },
-                        {
-                          value: "คลินิกเทคนิคการแพทย์",
-                          label: "คลินิกเทคนิคการแพทย์",
-                        },
-                        {
-                          value: "คลินิกแพทย์แผนไทยประยุกต์",
-                          label: "คลินิกแพทย์แผนไทยประยุกต์",
-                        },
-                        {
-                          value: "คลินิกสัตวแพทย์",
-                          label: "คลินิกสัตวแพทย์",
-                        },
-                        {
-                          value: "สภาเภสัชกรรม",
-                          label: "สภาเภสัชกรรม",
-                        },
-                        {
-                          value: "บริษัทยา",
-                          label: "บริษัทยา",
-                        },
-                      ]}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label="ชื่อสถานที่ทำงาน" className=" w-full">
-                    <Input placeholder="input ID" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]}>
-                <Col span={12}>
-                  <Form.Item label="ตำแหน่ง" className=" w-full">
-                    <Select
-                      options={[
-                        { value: "แพทย์", label: "แพทย์" },
-                        { value: "ทันตแพทย์", label: "ทันตแพทย์" },
-                        { value: "พยาบาลวิชาชีพ", label: "พยาบาลวิชาชีพ" },
-                        { value: "นักกายบำบัด", label: "นักกายบำบัด" },
-                        {
-                          value: "นักเทคนิคการแพทย์",
-                          label: "นักเทคนิคการแพทย์",
-                        },
-                        {
-                          value: "นักรังสีการแพทย์",
-                          label: "นักรังสีการแพทย์",
-                        },
-                        {
-                          value: "นักกิจกรรมบำบัด",
-                          label: "นักกิจกรรมบำบัด",
-                        },
-                        {
-                          value: "นักโภชนาการ/นักกำหนดอาหาร",
-                          label: "นักโภชนาการ/นักกำหนดอาหาร",
-                        },
-                        {
-                          value: "นักจิตวิทยา",
-                          label: "นักจิตวิทยา",
-                        },
-                        {
-                          value: "นักการแพทย์แผนไทย",
-                          label: "นักการแพทย์แผนไทย",
-                        },
-                        {
-                          value: "นักวิชาการสาธารณสุข",
-                          label: "นักวิชาการสาธารณสุข",
-                        },
-                        {
-                          value: "นักสังคมสงเคราะห์",
-                          label: "นักสังคมสงเคราะห์",
-                        },
-                        {
-                          value: "อาจารย์มหาวิทยาลัย",
-                          label: "อาจารย์มหาวิทยาลัย",
-                        },
-                        {
-                          value: "ผู้เชี่ยวชาญ",
-                          label: "ผู้เชี่ยวชาญ",
-                        },
-                      ]}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item
-                    label="หมายเลขโทรศัพท์ที่ทำงาน"
-                    className=" w-full">
-                    <Input placeholder="input ID" />
-                  </Form.Item>
-                </Col>
-              </Row>
+
+              <div className="flex flex-row gap-2 flex-start">
+                <Form.Item label="ประเภทสถานที่ทำงาน" className=" w-full">
+                  <Select
+                    placeholder="กรุณาเลือกสถานที่ทำงาน"
+                    options={workPlace.map((option) => ({
+                      value: option,
+                      label: option,
+                    }))}
+                  />
+                </Form.Item>
+                <Form.Item label="ชื่อสถานที่ทำงาน" className=" w-full">
+                  <Input placeholder="กรุณากรอกชื่อสถานที่ทำงาน" />
+                </Form.Item>
+              </div>
+              <div className="flex flex-row gap-2 flex-start">
+                <Form.Item label="ตำแหน่ง" className=" w-full">
+                  <Select
+                    placeholder="กรุณาเลือกอาชีพ"
+                    options={jobOptions.map((option) => ({
+                      value: option,
+                      label: option,
+                    }))}
+                  />
+                </Form.Item>
+                <Form.Item label="หมายเลขโทรศัพท์ที่ทำงาน" className=" w-full">
+                  <Input placeholder="input ID" />
+                </Form.Item>
+              </div>
             </div>
+
             <div class={page !== 3 ? "hidden" : "null"}>
               <div className=" text-left text-[#0e286b] font-bold">
                 ประวัติการศึกษาและประสบการณ์การทำงาน
               </div>
               <Divider />
-              <Row gutter={[8, 8]}>
-                <Col span={24}>
-                  <Form.Item label="ประวัติการศึกษา " className=" w-full">
-                    <Input.TextArea rows={6} />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]}>
-                <Col span={24}>
-                  <Form.Item label="ประสบการณ์การทำงาน" className=" w-full">
-                    <Input.TextArea rows={6} />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]}>
-                <Col span={24}>
-                  <Form.Item label="ความเชี่ยวชาญ" className=" w-full">
-                    <Input.TextArea rows={6} />
-                  </Form.Item>
-                </Col>
-              </Row>
+              <Form.Item label="ประวัติการศึกษา " className=" w-full">
+                <Input.TextArea
+                  rows={6}
+                  placeholder="กรุณากรอก ประวัติการศึกษา"
+                />
+              </Form.Item>
+              <Form.Item label="ประสบการณ์การทำงาน" className=" w-full">
+                <Input.TextArea
+                  rows={6}
+                  placeholder="กรุณากรอก ประสบการณ์การทำงาน"
+                />
+              </Form.Item>
+              <Form.Item label="ความเชี่ยวชาญ" className=" w-full">
+                <Input.TextArea
+                  rows={6}
+                  placeholder="กรุณากรอก ความเชี่ยวชาญ"
+                />
+              </Form.Item>
             </div>
+
             <div class={page !== 4 ? "hidden" : "null"}>
               <div className=" text-left text-[#0e286b] font-bold">
                 TeleHealth Thailand
               </div>
-              <div className="text-xs">กรุณาแนบรายละเอียด ดังนี้</div>
+              <div className="text-xs ">กรุณาแนบรายละเอียด ดังนี้</div>
               <Divider />
-              <div className="text-[#0e286b]">
-                วันและเวลาในการทำงานบนแพลตฟอร์ม TeleHealth Thailand
-                (ระบุทั้งเวลาเริ่มต้นและเวลาสิ้นสุด){" "}
-                <font className="text-red-700">*</font>
-              </div>
-              <Row>
-                <Col span={8}></Col>
-                <Col span={8}>
-                  <div className=" border-[#B8BDC9] border border-solid text-center bg-[#E5EAF4] text-[#0e286b] text-md h-10 flex items-center justify-center">
+              <div className="my-8 ">
+                <div className="text-[#0e286b] my-8">
+                  วันและเวลาในการทำงานบนแพลตฟอร์ม TeleHealth Thailand
+                  (ระบุทั้งเวลาเริ่มต้นและเวลาสิ้นสุด)
+                  <font className="text-red-700">*</font>
+                </div>
+                <div className="flex ">
+                  <div className="w-full"></div>
+                  <div className="w-full text-center bg-blue-100 shadow-inner py-2">
                     เวลาเริ่มต้น
                   </div>
-                </Col>
-                <Col span={8}>
-                  <div className=" border-[#B8BDC9]  border border-solid text-center bg-[#E5EAF4] text-[#0e286b] h-10 flex items-center justify-center">
-                    เวลาสิ้นสุด
+                  <div className="w-full text-center bg-blue-100 shadow-inner py-2">
+                    สิ้นสุด
                   </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid text-center bg-[#E5EAF4] text-[#0e286b] text-md h-10 flex items-center justify-center">
+                </div>
+                <div className="flex ">
+                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันจันทร์
                   </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid text-center bg-[#E5EAF4] text-[#0e286b] text-md h-10 flex items-center justify-center">
+                  <TimePicker className="w-full" size="large" />
+                  <TimePicker className="w-full" size="large" />
+                </div>
+                <div className="flex ">
+                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันอังคาร
                   </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid text-center bg-[#E5EAF4] text-[#0e286b] text-md h-10 flex items-center justify-center">
+                  <TimePicker className="w-full" size="large" />
+                  <TimePicker className="w-full" size="large" />
+                </div>
+                <div className="flex ">
+                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันพุธ
                   </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid text-center bg-[#E5EAF4] text-[#0e286b] text-md h-10 flex items-center justify-center">
+                  <TimePicker className="w-full" size="large" />
+                  <TimePicker className="w-full" size="large" />
+                </div>
+                <div className="flex ">
+                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     พฤหัสบดี
                   </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid text-center bg-[#E5EAF4] text-[#0e286b] text-md h-10 flex items-center justify-center">
+                  <TimePicker className="w-full" size="large" />
+                  <TimePicker className="w-full" size="large" />
+                </div>
+                <div className="flex ">
+                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันศุกร์
                   </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid text-center bg-[#E5EAF4] text-[#0e286b] text-md h-10 flex items-center justify-center">
+                  <TimePicker className="w-full" size="large" />
+                  <TimePicker className="w-full" size="large" />
+                </div>
+                <div className="flex ">
+                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันเสาร์
                   </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid text-center bg-[#E5EAF4] text-[#0e286b] text-md h-10 flex items-center justify-center">
+                  <TimePicker className="w-full" size="large" />
+                  <TimePicker className="w-full" size="large" />
+                </div>
+                <div className="flex ">
+                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
                     วันอาทิตย์
                   </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-                <Col span={8}>
-                  <div className="border-[#B8BDC9] border border-solid px-4  text-[#0e286b] h-10 flex items-center justify-center text-center ">
-                    <Select className="w-full" options={options} />
-                  </div>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]} className="mt-8">
-                <Col span={12}>
-                  <Form.Item label="สำเนาบัตรประชาชน">
-                    <Form.Item
-                      name="dragger"
-                      valuePropName="fileList"
-                      getValueFromEvent={normFile}
-                      noStyle>
-                      <Upload.Dragger name="files" action="/upload.do">
-                        <p className="ant-upload-drag-icon">
-                          <InboxOutlined />
-                        </p>
-                        <p className="ant-upload-text">Browse Files</p>
-                        <p className="ant-upload-hint">
-                          Drag and drop file here
-                        </p>
-                      </Upload.Dragger>
-                    </Form.Item>
+                  <TimePicker className="w-full" size="large" />
+                  <TimePicker className="w-full" size="large" />
+                </div>
+              </div>
+              <div className="flex flex-row gap-2 ">
+                <Form.Item label="ภาพโปรไฟล์" className="w-full">
+                  <Form.Item
+                    name="dragger"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                    noStyle>
+                    <Upload.Dragger name="files" action="/upload.do">
+                      <p className="ant-upload-drag-icon">
+                        <InboxOutlined />
+                      </p>
+                      <p className="ant-upload-text">Browse Files</p>
+                      <p className="ant-upload-hint">Drag and drop file here</p>
+                    </Upload.Dragger>
                   </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label="สำเนาบัตรประชาชน">
-                    <Form.Item
-                      name="dragger"
-                      valuePropName="fileList"
-                      getValueFromEvent={normFile}
-                      noStyle>
-                      <Upload.Dragger name="files" action="/upload.do">
-                        <p className="ant-upload-drag-icon">
-                          <InboxOutlined />
-                        </p>
-                        <p className="ant-upload-text">Browse Files</p>
-                        <p className="ant-upload-hint">
-                          Drag and drop file here
-                        </p>
-                      </Upload.Dragger>
-                    </Form.Item>
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]} className="">
-                <Col span={12}>
-                  <Form.Item label="สำเนาทะเบียนบ้าน">
-                    <Form.Item
-                      name="dragger"
-                      valuePropName="fileList"
-                      getValueFromEvent={normFile}
-                      noStyle>
-                      <Upload.Dragger name="files" action="/upload.do">
-                        <p className="ant-upload-drag-icon">
-                          <InboxOutlined />
-                        </p>
-                        <p className="ant-upload-text">Browse Files</p>
-                        <p className="ant-upload-hint">
-                          Drag and drop file here
-                        </p>
-                      </Upload.Dragger>
-                    </Form.Item>
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label="สำเนาใบอนุญาตประกอบวิชาชีพ">
-                    <Form.Item
-                      name="dragger"
-                      valuePropName="fileList"
-                      getValueFromEvent={normFile}
-                      noStyle>
-                      <Upload.Dragger name="files" action="/upload.do">
-                        <p className="ant-upload-drag-icon">
-                          <InboxOutlined />
-                        </p>
-                        <p className="ant-upload-text">Browse Files</p>
-                        <p className="ant-upload-hint">
-                          Drag and drop file here
-                        </p>
-                      </Upload.Dragger>
-                    </Form.Item>
-                  </Form.Item>
-                </Col>
-              </Row>
-
-              <Form.Item label="เอกสารหลักฐานการอบรมเภสัชกรรมทางไกล (สำหรับเภสัชกรเท่านั้น)">
-                <Form.Item
-                  name="dragger"
-                  valuePropName="fileList"
-                  getValueFromEvent={normFile}
-                  noStyle>
-                  <Upload.Dragger name="files" action="/upload.do">
-                    <p className="ant-upload-drag-icon">
-                      <InboxOutlined />
-                    </p>
-                    <p className="ant-upload-text">Browse Files</p>
-                    <p className="ant-upload-hint">Drag and drop file here</p>
-                  </Upload.Dragger>
                 </Form.Item>
-              </Form.Item>
+                <Form.Item label="สำเนาบัตรประชาชน" className="w-full">
+                  <Form.Item
+                    name="dragger"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                    noStyle>
+                    <Upload.Dragger name="files" action="/upload.do">
+                      <p className="ant-upload-drag-icon">
+                        <InboxOutlined />
+                      </p>
+                      <p className="ant-upload-text">Browse Files</p>
+                      <p className="ant-upload-hint">Drag and drop file here</p>
+                    </Upload.Dragger>
+                  </Form.Item>
+                </Form.Item>
+              </div>
+              <div className="flex flex-row gap-2 ">
+                <Form.Item label="สำเนาทะเบียนบ้าน" className="w-full">
+                  <Form.Item
+                    name="dragger"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                    noStyle>
+                    <Upload.Dragger name="files" action="/upload.do">
+                      <p className="ant-upload-drag-icon">
+                        <InboxOutlined />
+                      </p>
+                      <p className="ant-upload-text">Browse Files</p>
+                      <p className="ant-upload-hint">Drag and drop file here</p>
+                    </Upload.Dragger>
+                  </Form.Item>
+                </Form.Item>
+                <Form.Item label="สำเนาใบประกอบวิชาชีพ" className="w-full">
+                  <Form.Item
+                    name="dragger"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                    noStyle>
+                    <Upload.Dragger name="files" action="/upload.do">
+                      <p className="ant-upload-drag-icon">
+                        <InboxOutlined />
+                      </p>
+                      <p className="ant-upload-text">Browse Files</p>
+                      <p className="ant-upload-hint">Drag and drop file here</p>
+                    </Upload.Dragger>
+                  </Form.Item>
+                </Form.Item>
+              </div>
+              <div className="flex flex-row gap-2 ">
+                <Form.Item
+                  label="เอกสารอบรมเภสัชกรทางไกล(สำหรับเภสัชกรเท่านั้น)"
+                  className="w-full">
+                  <Form.Item
+                    name="dragger"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                    noStyle>
+                    <Upload.Dragger name="files" action="/upload.do">
+                      <p className="ant-upload-drag-icon">
+                        <InboxOutlined />
+                      </p>
+                      <p className="ant-upload-text">Browse Files</p>
+                      <p className="ant-upload-hint">Drag and drop file here</p>
+                    </Upload.Dragger>
+                  </Form.Item>
+                </Form.Item>
+              </div>
             </div>
             <div class={page !== 5 ? "hidden" : "null"}>
               <div className=" text-left text-[#0e286b] font-bold">
@@ -647,58 +461,57 @@ function App() {
               </div>
               <div className="text-xs">Authentication System</div>
               <Divider />
-              <Row gutter={[8, 8]} className="mt-8 ">
-                <Col span={12} className="w-auto flex items-center ">
+              <div className="flex flex-row gap-2 ">
+                <div className="w-full align-middle">
                   <img
-                    className="w-32 md:w-64"
-                    src="https://www.chem-ou.com/manage/uploads/2021/verify05.jpg"></img>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label="ขั้นตอนที่ 1 กรุณาถ่ายรูปคู่บัตรประชาชน">
-                    <Form.Item
-                      name="dragger"
-                      valuePropName="fileList"
-                      getValueFromEvent={normFile}
-                      noStyle>
-                      <Upload.Dragger name="files" action="/upload.do">
-                        <p className="ant-upload-drag-icon">
-                          <InboxOutlined />
-                        </p>
-                        <p className="ant-upload-text">Browse Files</p>
-                        <p className="ant-upload-hint">
-                          Drag and drop file here
-                        </p>
-                      </Upload.Dragger>
-                    </Form.Item>
+                    className="w-full align-middle "
+                    src="https://hilight.kapook.com/img_cms2/user/patcharin/2022/hilight/card1.jpg"
+                  />
+                </div>
+                <Form.Item
+                  label="ขั้นตอนที่ 1 กรุณาถ่ายรูปคู่บัตรประชาชน"
+                  className="w-full">
+                  <Form.Item
+                    name="dragger"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                    noStyle>
+                    <Upload.Dragger name="files" action="/upload.do">
+                      <p className="ant-upload-drag-icon">
+                        <InboxOutlined />
+                      </p>
+                      <p className="ant-upload-text">Browse Files</p>
+                      <p className="ant-upload-hint">Drag and drop file here</p>
+                    </Upload.Dragger>
                   </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={[8, 8]} className="mt-8 ">
-                <Col span={12} className="w-auto flex items-center  ">
+                </Form.Item>
+              </div>
+
+              <div className="flex flex-row gap-2 ">
+                <div className="w-full   ">
                   <img
-                    className="w-32 md:w-64"
-                    src="https://hilight.kapook.com/img_cms2/user/patcharin/2022/hilight/card1.jpg"></img>
-                </Col>
-                <Col span={12}>
-                  <Form.Item label="ขั้นตอนที่ 2 กรุณาถ่ายรูปหน้าบัตรประชาชน">
-                    <Form.Item
-                      name="dragger"
-                      valuePropName="fileList"
-                      getValueFromEvent={normFile}
-                      noStyle>
-                      <Upload.Dragger name="files" action="/upload.do">
-                        <p className="ant-upload-drag-icon">
-                          <InboxOutlined />
-                        </p>
-                        <p className="ant-upload-text">Browse Files</p>
-                        <p className="ant-upload-hint">
-                          Drag and drop file here
-                        </p>
-                      </Upload.Dragger>
-                    </Form.Item>
+                    className="w-full align-middle "
+                    src="https://hilight.kapook.com/img_cms2/user/patcharin/2022/hilight/card1.jpg"
+                  />
+                </div>
+                <Form.Item
+                  label="ขั้นตอนที่ 2 กรุณาถ่ายรูปหน้าบัตรประชาชน"
+                  className="w-full">
+                  <Form.Item
+                    name="dragger"
+                    valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                    noStyle>
+                    <Upload.Dragger name="files" action="/upload.do">
+                      <p className="ant-upload-drag-icon">
+                        <InboxOutlined />
+                      </p>
+                      <p className="ant-upload-text">Browse Files</p>
+                      <p className="ant-upload-hint">Drag and drop file here</p>
+                    </Upload.Dragger>
                   </Form.Item>
-                </Col>
-              </Row>
+                </Form.Item>
+              </div>
             </div>
             <div className="flex items-center justify-center gap-4 ">
               <Form.Item>
@@ -728,7 +541,7 @@ function App() {
             </div>
           </Form>
         </div>
-      </Card>
+      </div>
     </div>
   );
 }
