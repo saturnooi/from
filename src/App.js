@@ -1,31 +1,57 @@
 import React from "react";
 import { useState } from "react";
-import {
-  HistoryOutlined,
-  SmileOutlined,
-  SolutionOutlined,
-  UserOutlined,
-  PieChartOutlined,
-  InboxOutlined,
-} from "@ant-design/icons";
-import {
-  Steps,
-  Divider,
-  Input,
-  Form,
-  Select,
-  Button,
-  Upload,
-  TimePicker,
-} from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+import { Divider, Input, Form, Select, Button, Upload, TimePicker } from "antd";
+import postForm from "./api/postForm";
+
+const initialPayload = {
+  PREFIX_NAME: "string",
+  NAME: "string",
+  SURNAME: "string",
+  ID_CARD: "string",
+  OCCUPATIONAL: "string",
+  LICENSE_NUMBER: "string",
+  ADDRESS: "string",
+  PHONE: "string",
+  EMAIL: "string",
+  EDUCATION: "string",
+  COMPANY_NAME: "string",
+  EXPERIENCE: "string",
+  DEVICE_ID: "string",
+  PRESCRIPTION: "string",
+  CONSULT_SELECTED_PRICE: 0,
+  BUSINESS_MODEL: "string",
+  COMMISSION: "string",
+  MODE: "string",
+  DEPARTMENT: "string",
+  SPECIAL_CLINIC: "string",
+  TELE_COMPANY_NAME: "string",
+  OPERATION_MONDAY: 0,
+  OPERATION_TUESDAY: 0,
+  OPERATION_WEDNESDAY: 0,
+  OPERATION_THURSDAY: 0,
+  OPERATION_FRIDAY: 0,
+  OPERATION_SATURDAY: 0,
+  OPERATION_SUNDAY: 0,
+  INSURANCE: "string",
+  USERNAME: "string",
+  PASSWORD: "string",
+  RANDOM_CONSULT: 0,
+  SELECTED_CONSULT: 0,
+  APPOINT_CONSULT: 0,
+  VERIFY_STATUS: 0,
+  VERIFY_IMAGE: "string",
+};
 
 function App() {
+  const [payload, setPayload] = useState(initialPayload);
+
   const [form] = Form.useForm();
 
   const [page, setPage] = useState(1);
 
   const onFinish = (values) => {
-    console.log(page, values);
+    console.log(values);
   };
 
   const nextPage = (values) => {
@@ -42,6 +68,18 @@ function App() {
       return e;
     }
     return e?.fileList;
+  };
+
+  const postPayload = async (jsonData) => {
+    try {
+      const response = await postForm(
+        jsonData,
+        "https://your-api-endpoint.com/your-resource"
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const jobOptions = [
@@ -157,36 +195,45 @@ function App() {
               </div>
               <Divider />
               <div className="flex flex-row gap-2">
-                <Form.Item label="Email" name="email" className=" w-full">
+                <Form.Item label="Email" name="EMAI" className="w-full">
                   <Input placeholder="กรุณากรอกอีเมล" />
                 </Form.Item>
-                <Form.Item label="เลขบัตรประชาชน" className="w-full">
+                <Form.Item
+                  label="เลขบัตรประชาชน"
+                  name="ID_CARD"
+                  className="w-full">
                   <Input placeholder="กรุณากรอกเลขบัตรประชาชน" />
                 </Form.Item>
               </div>
               <div className="flex flex-row gap-2 flex-start">
-                <Form.Item label="คำนำหน้า" className="w-[50%]">
+                <Form.Item
+                  label="คำนำหน้า"
+                  name="PREFIX_NAME"
+                  className="w-[50%]">
                   <Select
                     placeholder="กรุณาเลือกคำนำหน้า"
                     options={[
-                      { value: "MR", label: "นาย" },
-                      { value: "MS", label: "นาง" },
-                      { value: "MRS", label: "นางสาว" },
+                      { value: "นาย", label: "นาย" },
+                      { value: "นาง", label: "นาง" },
+                      { value: "นางสาว", label: "นางสาว" },
                     ]}
                   />
                 </Form.Item>
               </div>
 
               <div className="flex flex-row gap-2 flex-start">
-                <Form.Item label="ชื่อ" className=" w-full">
+                <Form.Item label="ชื่อ" name="NAME" className=" w-full">
                   <Input placeholder="กรุณากรอกชื่อ" />
                 </Form.Item>
-                <Form.Item label="นามสกุล" className=" w-full">
+                <Form.Item label="นามสกุล" name="SURNAME" className=" w-full">
                   <Input placeholder="กรุณากรอกนามสกุล" />
                 </Form.Item>
               </div>
               <div className="flex flex-row gap-2 flex-start">
-                <Form.Item label="อาชีพ" className=" w-full">
+                <Form.Item
+                  label="อาชีพ"
+                  name="OCCUPATIONAL"
+                  className=" w-full">
                   <Select
                     placeholder="กรุณาเลือกอาชีพ"
                     options={jobOptions.map((option) => ({
@@ -195,34 +242,44 @@ function App() {
                     }))}
                   />
                 </Form.Item>
-                <Form.Item label="หมายเลขโทรศัพท์" className=" w-full">
+                <Form.Item
+                  label="หมายเลขโทรศัพท์"
+                  name="PHONE"
+                  className=" w-full">
                   <Input placeholder="กรุณากรอกหมายเลขโทรศัพท์" />
                 </Form.Item>
               </div>
               <div className="flex flex-row gap-2 flex-start">
                 <Form.Item
                   label="เลขที่ใบอนุญาตประกอบวิชาชีพ"
-                  className=" w-full">
+                  className=" w-full"
+                  name="LICENSE_NUMBER">
                   <Input placeholder="กรุณากรอกเลขที่ใบอนุญาต" />
                 </Form.Item>
               </div>
               <div className="flex flex-row gap-2 ">
-                <Form.Item label="สถานะใบอนุญาต" className=" w-full">
+                <Form.Item
+                  label="สถานะใบอนุญาต"
+                  name="LICENSE_STATUS"
+                  className="w-full">
                   <Select
                     placeholder="กรุณาเลือกสถานะใบอนุญาต"
                     options={[
                       {
-                        value: "ปกติ",
+                        value: "1",
                         label: "ปกติ",
                       },
                       {
-                        value: "ไม่ปกติ",
+                        value: "2",
                         label: "ไม่ปกติ",
                       },
                     ]}
                   />
                 </Form.Item>
-                <Form.Item label="ID Line ของท่าน" className=" w-full">
+                <Form.Item
+                  label="ID Line ของท่าน"
+                  name="ID_LINE"
+                  className=" w-full">
                   <Input placeholder="กรุณากรอก ID Line" />
                 </Form.Item>
               </div>
@@ -230,7 +287,8 @@ function App() {
               <div className="flex flex-row gap-2 flex-start">
                 <Form.Item
                   label="ที่อยู่ที่สามารถติดต่อได้"
-                  className=" w-full">
+                  className=" w-full"
+                  name="ADDRESS">
                   <Input.TextArea
                     placeholder="ที่อยู่ที่สามารถติดต่อได้"
                     rows={6}
@@ -246,7 +304,10 @@ function App() {
               <Divider />
 
               <div className="flex flex-row gap-2 flex-start">
-                <Form.Item label="ประเภทสถานที่ทำงาน" className=" w-full">
+                <Form.Item
+                  label="ประเภทสถานที่ทำงาน"
+                  name="BUSINESS_MODEL"
+                  className=" w-full">
                   <Select
                     placeholder="กรุณาเลือกสถานที่ทำงาน"
                     options={workPlace.map((option) => ({
@@ -255,12 +316,18 @@ function App() {
                     }))}
                   />
                 </Form.Item>
-                <Form.Item label="ชื่อสถานที่ทำงาน" className=" w-full">
+                <Form.Item
+                  label="ชื่อสถานที่ทำงาน"
+                  name="COMPANY_NAME"
+                  className=" w-full">
                   <Input placeholder="กรุณากรอกชื่อสถานที่ทำงาน" />
                 </Form.Item>
               </div>
               <div className="flex flex-row gap-2 flex-start">
-                <Form.Item label="ตำแหน่ง" className=" w-full">
+                <Form.Item
+                  label="ตำแหน่ง"
+                  name="DEPARTMENT"
+                  className=" w-full">
                   <Select
                     placeholder="กรุณาเลือกอาชีพ"
                     options={jobOptions.map((option) => ({
@@ -269,7 +336,10 @@ function App() {
                     }))}
                   />
                 </Form.Item>
-                <Form.Item label="หมายเลขโทรศัพท์ที่ทำงาน" className=" w-full">
+                <Form.Item
+                  label="หมายเลขโทรศัพท์ที่ทำงาน"
+                  name="COMPANY_PHONE"
+                  className=" w-full">
                   <Input placeholder="input ID" />
                 </Form.Item>
               </div>
@@ -280,19 +350,28 @@ function App() {
                 ประวัติการศึกษาและประสบการณ์การทำงาน
               </div>
               <Divider />
-              <Form.Item label="ประวัติการศึกษา " className=" w-full">
+              <Form.Item
+                label="ประวัติการศึกษา"
+                name="EDUCATION"
+                className=" w-full">
                 <Input.TextArea
                   rows={6}
                   placeholder="กรุณากรอก ประวัติการศึกษา"
                 />
               </Form.Item>
-              <Form.Item label="ประสบการณ์การทำงาน" className=" w-full">
+              <Form.Item
+                label="ประสบการณ์การทำงาน"
+                name="EXPERIENCE"
+                className=" w-full">
                 <Input.TextArea
                   rows={6}
                   placeholder="กรุณากรอก ประสบการณ์การทำงาน"
                 />
               </Form.Item>
-              <Form.Item label="ความเชี่ยวชาญ" className=" w-full">
+              <Form.Item
+                label="ความเชี่ยวชาญ"
+                name="EXPERT"
+                className=" w-full">
                 <Input.TextArea
                   rows={6}
                   placeholder="กรุณากรอก ความเชี่ยวชาญ"
@@ -322,108 +401,72 @@ function App() {
                   </div>
                 </div>
                 <div className="flex ">
-                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
+                  <div className="w-[32%] text-center bg-blue-100 shadow-inner p-2">
                     วันจันทร์
                   </div>
-                  <TimePicker
-                    className="w-full"
-                    size="large"
+                  <TimePicker.RangePicker
                     format={"HH:mm"}
-                  />
-                  <TimePicker
-                    className="w-full"
-                    size="large"
-                    format={"HH:mm"}
+                    className="w-[68%] "
                   />
                 </div>
                 <div className="flex ">
-                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
+                  <div className="w-[32%] text-center bg-blue-100 shadow-inner p-2">
                     วันอังคาร
                   </div>
-                  <TimePicker
-                    className="w-full"
-                    size="large"
+                  <TimePicker.RangePicker
+                    name="TUESDAY"
                     format={"HH:mm"}
-                  />
-                  <TimePicker
-                    className="w-full"
-                    size="large"
-                    format={"HH:mm"}
+                    className="w-[68%] "
                   />
                 </div>
                 <div className="flex ">
-                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
+                  <div className="w-[32%] text-center bg-blue-100 shadow-inner p-2">
                     วันพุธ
                   </div>
-                  <TimePicker
-                    className="w-full"
-                    size="large"
+                  <TimePicker.RangePicker
+                    name="WEDNESDAY"
                     format={"HH:mm"}
-                  />
-                  <TimePicker
-                    className="w-full"
-                    size="large"
-                    format={"HH:mm"}
+                    className="w-[68%] "
                   />
                 </div>
                 <div className="flex ">
-                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
+                  <div className="w-[32%] text-center bg-blue-100 shadow-inner p-2">
                     พฤหัสบดี
                   </div>
-                  <TimePicker
-                    className="w-full"
-                    size="large"
+                  <TimePicker.RangePicker
+                    name="THURSDAY"
                     format={"HH:mm"}
-                  />
-                  <TimePicker
-                    className="w-full"
-                    size="large"
-                    format={"HH:mm"}
+                    className="w-[68%] "
                   />
                 </div>
                 <div className="flex ">
-                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
+                  <div className="w-[32%] text-center bg-blue-100 shadow-inner p-2">
                     วันศุกร์
                   </div>
-                  <TimePicker
-                    className="w-full"
-                    size="large"
+                  <TimePicker.RangePicker
+                    name="FRIDAY"
                     format={"HH:mm"}
-                  />
-                  <TimePicker
-                    className="w-full"
-                    size="large"
-                    format={"HH:mm"}
+                    className="w-[68%] "
                   />
                 </div>
                 <div className="flex ">
-                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
+                  <div className="w-[32%] text-center bg-blue-100 shadow-inner p-2">
                     วันเสาร์
                   </div>
-                  <TimePicker
-                    className="w-full"
-                    size="large"
+                  <TimePicker.RangePicker
+                    name="SATURDAY"
                     format={"HH:mm"}
-                  />
-                  <TimePicker
-                    className="w-full"
-                    size="large"
-                    format={"HH:mm"}
+                    className="w-[68%] "
                   />
                 </div>
                 <div className="flex ">
-                  <div className="w-full text-center bg-blue-100 shadow-inner p-2">
+                  <div className="w-[32%] text-center bg-blue-100 shadow-inner p-2">
                     วันอาทิตย์
                   </div>
-                  <TimePicker
-                    className="w-full"
-                    size="large"
+                  <TimePicker.RangePicker
+                    name="SUNDAY"
                     format={"HH:mm"}
-                  />
-                  <TimePicker
-                    className="w-full"
-                    size="large"
-                    format={"HH:mm"}
+                    className="w-[68%] "
                   />
                 </div>
               </div>
@@ -587,7 +630,7 @@ function App() {
                 </Form.Item>
               </div>
 
-              <div class={page !== 5 ? "hidden" : "null"}>
+              <div>
                 <Form.Item>
                   <Button type="primary" className="w-20" onClick={form.submit}>
                     Submit
